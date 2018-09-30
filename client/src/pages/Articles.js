@@ -18,6 +18,17 @@ class Articles extends Component {
     synopsis: ""
   };
 
+  componentDidMount() {
+    this.loadArticles();
+  };
+
+  loadArticles = () => {
+    console.log("calling API from forward .js file")
+    API.getArticles()
+        .then(result => {
+          console.log(result.data)
+        });
+  };
   
 
   render() {
