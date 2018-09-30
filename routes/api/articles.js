@@ -7,7 +7,7 @@ router.route("/")
   .post(articleController.create);
 
 // Matches with "/api/books/:id"
-router
+router.route("/:id")
   .delete(articleController.remove)
 
 module.exports = router;
