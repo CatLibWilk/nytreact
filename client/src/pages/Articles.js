@@ -37,13 +37,20 @@ class Articles extends Component {
     const tar = id;
     const name = e.target.getAttribute("name");
 
-    const action = (name === "del-btn") ? this.removeArticle(tar) : this.saveArticle(id);
+    const action = (name === "del-btn") ? this.deleteArticle(tar) : this.saveArticle(id);
 
   }
 
-  removeArticle = (id) => {
-    console.log("remove called")
-    console.log(id)
+  deleteArticle = (id) => {
+    API.deleteArticle(id)
+      .then(res => {
+        console.log(res.data._id)
+        console.log(this.state.articles)
+        const articles = [...this.state.articles];
+        const remainingArticles = articles.filter(article => {if(article._id !== res.data._id){return true}});
+        console.log(remainingArticles)
+        this.setState({articles: remainingArticles});
+      })   
   };
 
   saveArticle = (id) => {

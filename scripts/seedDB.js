@@ -24,6 +24,51 @@ const articleSeed = [
     date:  new Date(Date.now()),
     url: "http://fuckyou.fuckoff"
   },
+  {
+    title: "The Dead Zone",
+    date:  new Date(Date.now()),
+    url: "http://fuckyou.fuckoff"
+  },
+  {
+    title: "The Dead Zone",
+    date:  new Date(Date.now()),
+    url: "http://fuckyou.fuckoff"
+  },
+  {
+    title: "The Dead Zone",
+    date:  new Date(Date.now()),
+    url: "http://fuckyou.fuckoff"
+  },
+  {
+    title: "The Dead Zone",
+    date:  new Date(Date.now()),
+    url: "http://fuckyou.fuckoff"
+  },
+  {
+    title: "The Dead Zone",
+    date:  new Date(Date.now()),
+    url: "http://fuckyou.fuckoff"
+  },
+  {
+    title: "The Dead Zone",
+    date:  new Date(Date.now()),
+    url: "http://fuckyou.fuckoff"
+  },
+  {
+    title: "The Dead Zone",
+    date:  new Date(Date.now()),
+    url: "http://fuckyou.fuckoff"
+  },
+  {
+    title: "The Dead Zone",
+    date:  new Date(Date.now()),
+    url: "http://fuckyou.fuckoff"
+  },
+  {
+    title: "The Dead Zone",
+    date:  new Date(Date.now()),
+    url: "http://fuckyou.fuckoff"
+  }
   
 ];
 
