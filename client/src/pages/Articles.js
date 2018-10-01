@@ -7,10 +7,10 @@ import Article from "../components/Article";
 
 import DelBtn from "../components/Buttons/DelBtn";
 import SaveBtn from "../components/Buttons/SaveBtn";
-
 import API from "../utils/API";
+require('dotenv').config();
 
-
+const apikey = `${process.env.REACT_APP_NYTKey}`
 class Articles extends Component {
   state = {
     articles: [],
@@ -27,7 +27,7 @@ class Articles extends Component {
     request.get({
       url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
       qs: {
-        'api-key': "28c5463533f443558c7a938b7586d178",
+        'api-key': `${apikey}`,
         'begin_date': "20181001",
         'page': 0
       },
