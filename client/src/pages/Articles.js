@@ -73,17 +73,32 @@ class Articles extends Component {
   };
 
   saveArticle = (title, date, url) => {
-    const articleData = {
-      title: title,
-      date: date,
-      url: url
+    console.log(this.state.savedArticles)
+
+    const checker = this.state.savedArticles.filter(article => {
+      if(article.title === title){return true}
+    });
+    console.log(checker.length)
+
+    if(checker.length === 0){
+
+      const articleData = {
+        title: title,
+        date: date,
+        url: url
+      }
+  
+      API.saveArticle(articleData)
+          .then(result => {
+            console.log(result)
+            this.loadSavedArticles();
+          });
+
+    }else{
+      return;
     }
 
-    API.saveArticle(articleData)
-        .then(result => {
-          console.log(result)
-          this.loadSavedArticles();
-        })
+
   };
   
 
@@ -102,7 +117,7 @@ class Articles extends Component {
                 date={date} 
                 url={url}>
                   <SaveBtn name="save-btn" data_id={_id} onClick={(e) => {this.saveArticle(title, date, url)}}/>
-                  <DelBtn name="del-btn" data_id={_id} onClick={(e) => {this.deleteArticle(_id)}}/>
+                 
                   
                 </Article>
                 )
