@@ -6,10 +6,6 @@ import Article from "../components/Article";
 
 import API from "../utils/API";
 
-
-
-
-
 class Articles extends Component {
   state = {
     articles: [],
@@ -20,14 +16,17 @@ class Articles extends Component {
 
   componentDidMount() {
     this.loadArticles();
+
   };
 
   loadArticles = () => {
     console.log("calling API from forward .js file")
     API.getArticles()
         .then(result => {
-          console.log(result.data)
-        });
+          this.setState({articles: result.data, title: "", date: "", url: ""})
+        })
+        .catch(err => console.log(err));
+
   };
   
 
@@ -36,7 +35,19 @@ class Articles extends Component {
       <div>
         <Jumbotron />
         <Navbar />
-        
+        <div className="container-fluid">
+          <div className="row">
+            {this.state.articles.map(article => {
+              return(
+                <Article 
+                key={article._id}
+                title={article.title} 
+                date={article.date} 
+                url={article.url} />
+                )
+              })}
+          </div>
+        </div>
 
       </div>
     )
