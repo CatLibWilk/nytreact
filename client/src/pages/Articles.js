@@ -12,9 +12,7 @@ import API from "../utils/API";
 class Articles extends Component {
   state = {
     articles: [],
-    title: "",
-    author: "",
-    synopsis: ""
+    savedArticles: []
   };
 
   componentDidMount() {
@@ -26,36 +24,36 @@ class Articles extends Component {
     console.log("calling API from forward .js file")
     API.getArticles()
         .then(result => {
-          this.setState({articles: result.data, title: "", date: "", url: ""})
+          this.setState({articles: result.data})
         })
         .catch(err => console.log(err));
 
   };
 
-  clickHandle = (e, id) => {
-    console.log("handle called");
-    const tar = id;
-    const name = e.target.getAttribute("name");
-
-    const action = (name === "del-btn") ? this.deleteArticle(tar) : this.saveArticle(id);
-
-  }
-
   deleteArticle = (id) => {
     API.deleteArticle(id)
       .then(res => {
-        console.log(res.data._id)
-        console.log(this.state.articles)
         const articles = [...this.state.articles];
         const remainingArticles = articles.filter(article => {if(article._id !== res.data._id){return true}});
-        console.log(remainingArticles)
         this.setState({articles: remainingArticles});
+
       })   
   };
 
-  saveArticle = (id) => {
-    console.log("save called")
-    console.log(id)
+  saveArticle = (title, date, url) => {
+    const articleData = {
+      title: title,
+      date: date,
+      url: url
+    }
+
+    API.saveArticle(articleData)
+        .then(result => {
+          console.log(result)
+          const articlesUpdate = [...this.state.savedArticles];
+          articlesUpdate.push(result.data);
+          this.setState({savedArticles: articlesUpdate})
+        })
   };
   
 
@@ -66,19 +64,40 @@ class Articles extends Component {
         <Navbar />
         <div className="container-fluid">
           <div className="row">
-            {this.state.articles.map(article => {
+            {this.state.articles.map(({_id, title, date, url}) => {
               return(
                 <Article 
-                key={article._id}
-                title={article.title} 
-                date={article.date} 
-                url={article.url}>
-                  <SaveBtn name="save-btn" data_id={article._id} onClick={(e) => {this.clickHandle(e, article._id)}}/>
-                  <DelBtn name="del-btn" data_id={article._id} onClick={(e) => {this.clickHandle(e, article._id)}}/>
+                key={_id}
+                title={title} 
+                date={date} 
+                url={url}>
+                  <SaveBtn name="save-btn" data_id={_id} onClick={(e) => {this.saveArticle(title, date, url)}}/>
+                  <DelBtn name="del-btn" data_id={_id} onClick={(e) => {this.deleteArticle(_id)}}/>
                   
                 </Article>
                 )
               })}
+          </div>
+        </div>
+        <div id="saved-articles" className="row">
+          <Navbar />
+          <div className="col-12">
+            {this.state.savedArticles ? this.state.savedArticles.map(({_id, title, date, url}) => {
+              return(
+
+                <div>
+                <Article 
+                key={_id}
+                title={title} 
+                date={date} 
+                url={url}>
+      
+                  <DelBtn name="del-btn" data_id={_id} onClick={(e) => {this.clickHandle(e,_id)}}/>
+                      
+                </Article>
+                </div>
+                )
+                  }) : "no saved articles"}  
           </div>
         </div>
 
