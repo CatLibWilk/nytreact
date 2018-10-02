@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Articles from "./pages/Articles.js"
 import Saved from "./pages/Saved.js"
 import Jumbotron from "./components/Jumbotron";
-import Navbar from "./components/Navbar";
 import NoMatch from "./pages/NoMatch";
 import './App.css';
 

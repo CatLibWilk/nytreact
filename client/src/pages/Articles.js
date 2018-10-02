@@ -92,7 +92,7 @@ class Articles extends Component {
                   title={title} 
                   date={date} 
                   url={url}>
-                    <SaveBtn name="save-btn" data_id={_id} onClick={(e) => {this.saveArticle(title, date, url)}}/>
+                    <SaveBtn key={"wow0123"} name="save-btn" data_id={_id} onClick={(e) => {this.saveArticle(title, date, url)}}/>
                   
                     
                   </Article>
