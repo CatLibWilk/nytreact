@@ -1,6 +1,7 @@
 import React from "react";
 import { PromiseProvider } from "mongoose";
 
+
 const Article = ({title, date, url, children}) => (
   <div className="col-4 mb-3 mt-3">
     <div className="card text-center">

@@ -3,6 +3,6 @@ const nytController = require("../../controllers/nytController");
 
 // Matches with "/api/nyt"
 router.route("/")
-  .get(nytController.getArticles)
+  .post(nytController.getArticles)
 
 module.exports = router;

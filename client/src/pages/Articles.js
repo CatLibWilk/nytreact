@@ -9,26 +9,38 @@ class Articles extends Component {
       articles: [],
     };
 
-    componentDidMount() {
-      this.loadArticles();
-    }
 
-    loadArticles = () =>{
-      console.log('load articles');
-      API.getArticles()
+
+    search() {
+      var term = document.getElementById("search-input").value;
+      var date = document.getElementById("date-input").value;
+      console.log(term);
+      const query = {
+        term: term,
+        date: date
+      }
+    
+      API.getArticles(query)
           .then(result => {
-            const nytArticles = []
-            result.data.map(article => {
-              const newArticle ={
-                title: article.headline.main,
-                date: article.pub_date,
-                url: article.web_url
-              };
-            nytArticles.push(newArticle);
-            });
-            this.setState({articles: nytArticles});
+
+            if(result.data.length > 0){
+
+              const nytArticles = []
+              result.data.map(article => {
+                const newArticle ={
+                  title: article.headline.main,
+                  date: article.pub_date,
+                  url: article.web_url
+                };
+                nytArticles.push(newArticle);
+              });
+              this.setState({articles: nytArticles});
+            }else{
+              alert("this search returned no results");
+              return;
+            }
             
-          })
+          });
     }
 
     saveArticle = (title, date, url) => {
@@ -43,6 +55,7 @@ class Articles extends Component {
             alert("article successfully saved!")
           })
     }
+
     
     render(){
       return (
@@ -50,6 +63,27 @@ class Articles extends Component {
 
           <Navbar />
           <div className="container-fluid">
+
+            <div className="row">
+            
+              <div className="col-12 p-3 mt-3 mb-3">
+                <form>
+                  <div className="form-group">
+                    <label>Search Term</label>
+                    <input type="text" className="form-control" id="search-input" placeholder="Tito Puente"></input>
+                    
+                  </div>
+                  <div className="form-group">
+                    <label>Date</label>
+                    <input type="date" className="form-control" id="date-input" placeholder="YYYYMMDD"></input>
+                  </div>
+                  
+                  <button type="submit" className="btn btn-primary" onClick={(e) => {e.preventDefault(); this.search()}}>Search</button>
+                </form>
+              
+              </div>
+            </div>
+
             <div className="row">
               {this.state.articles.map(({_id, title, date, url}) => {
                 return(
