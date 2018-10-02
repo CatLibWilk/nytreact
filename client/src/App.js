@@ -10,11 +10,11 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className ="container-fluid">
         <Jumbotron />
         <Router>
           <div>
-            <Navbar />
+            
             <Switch>
               <Route exact path="/" component={Articles} />
               <Route exact path="/saved" component={Saved} />

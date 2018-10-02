@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Navbar from "../components/Navbar";
 import Article from "../components/Article";
 import SaveBtn from "../components/Buttons/SaveBtn";
 import API from "../utils/API";
@@ -45,21 +46,25 @@ class Articles extends Component {
     
     render(){
       return (
-        <div className="container-fluid">
-          <div className="row">
-            {this.state.articles.map(({_id, title, date, url}) => {
-              return(
-                <Article 
-                key={_id}
-                title={title} 
-                date={date} 
-                url={url}>
-                  <SaveBtn name="save-btn" data_id={_id} onClick={(e) => {this.saveArticle(title, date, url)}}/>
-                 
+        <div>
+
+          <Navbar />
+          <div className="container-fluid">
+            <div className="row">
+              {this.state.articles.map(({_id, title, date, url}) => {
+                return(
+                  <Article 
+                  key={_id}
+                  title={title} 
+                  date={date} 
+                  url={url}>
+                    <SaveBtn name="save-btn" data_id={_id} onClick={(e) => {this.saveArticle(title, date, url)}}/>
                   
-                </Article>
-                )
-              })}
+                    
+                  </Article>
+                  )
+                })}
+            </div>
           </div>
         </div>
       )

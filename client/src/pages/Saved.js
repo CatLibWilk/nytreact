@@ -34,24 +34,30 @@ class Saved extends Component {
 
     render() {
       return (
-        <div id="saved-articles" className="row">
-          <div className="col-12">
-          <h1>Saved Articles</h1>
-            {this.state.savedArticles.length > 0 ? this.state.savedArticles.map(({_id, title, date, url}) => {
-              return(
+        <div>
 
-                <div>
-                  <Article 
-                    key={_id}
-                    title={title} 
-                    date={date} 
-                    url={url}>
-        
-        <DelBtn name="del-btn" data_id={_id} onClick={(e) => {this.deleteArticle(_id)}}/>
-                  </Article>
-                </div>
-                )
-                  }) : "no saved articles"}  
+          <Navbar>
+          <h1 className="col-4">Saved Articles</h1>
+          </Navbar>
+          <div id="saved-articles" className="row">
+            <div className="col-12">
+            
+              {this.state.savedArticles.length > 0 ? this.state.savedArticles.map(({_id, title, date, url}) => {
+                return(
+                  
+                  <div>
+                    <Article 
+                      key={_id}
+                      title={title} 
+                      date={date} 
+                      url={url}>
+          
+          <DelBtn name="del-btn" data_id={_id} onClick={(e) => {this.deleteArticle(_id)}}/>
+                    </Article>
+                  </div>
+                  )
+                }) : <div className="col-6 mx-auto text-center p-5"><h1>No Saved Articles</h1></div>}  
+            </div>
           </div>
         </div>
       )
