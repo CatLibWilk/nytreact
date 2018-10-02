@@ -14,7 +14,7 @@ class Articles extends Component {
     search() {
       var term = document.getElementById("search-input").value;
       var date = document.getElementById("date-input").value;
-      console.log(term);
+
       const query = {
         term: term,
         date: date

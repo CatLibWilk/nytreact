@@ -17,7 +17,7 @@ class Saved extends Component {
     loadSaved() {
       API.getSavedArticles()
           .then (result => {
-            console.log(result.data);
+
             const returnedSaved = result.data;
             this.setState({savedArticles: returnedSaved})
           })
@@ -25,7 +25,7 @@ class Saved extends Component {
     };
 
     deleteArticle(id) {
-      console.log(`deleting article with id ${id}`)
+
       API.deleteArticle(id)
           .then(() => {
             this.loadSaved();

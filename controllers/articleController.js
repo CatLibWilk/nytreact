@@ -3,7 +3,7 @@ const db = require("../models");
 // Defining methods for the articleController
 module.exports = {
   findAll: function(req, res) {
-      console.log("reached findAll in controller")
+
     db.Article
       .find(req.query)
       .sort({ date: -1 })
