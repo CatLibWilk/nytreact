@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const articleRoutes = require("./articles");
-const nytRoute = require("./nytRoute")
+const nytRoute = require("./nytroute")
 
 // Articles routes
 router.use("/articles", articleRoutes);
