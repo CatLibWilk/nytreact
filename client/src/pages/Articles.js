@@ -31,7 +31,16 @@ class Articles extends Component {
     }
 
     saveArticle = (title, date, url) => {
-      console.log(title, date, url)
+      const articleData = {
+        title: title,
+        date: date,
+        url: url
+      };
+
+      API.saveArticle(articleData)
+          .then(result => {
+            alert("article successfully saved!")
+          })
     }
     
     render(){
