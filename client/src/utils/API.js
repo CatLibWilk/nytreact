@@ -3,8 +3,8 @@ import axios from "axios";
 export default {
   // Gets all articles
   getArticles: function() {
-    console.log("API call reached")
-    return axios.get("/api/articles");
+    console.log("utils.js/API.js call reached for NYT call (step 2)")
+    return axios.get("/api/nyt");
   },
   
   // Deletes the article with the given id
@@ -15,4 +15,5 @@ export default {
   saveArticle: function(articleData) {
     return axios.post("/api/articles", articleData);
   }
+
 };
