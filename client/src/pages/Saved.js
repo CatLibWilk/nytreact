@@ -26,6 +26,10 @@ class Saved extends Component {
 
     deleteArticle(id) {
       console.log(`deleting article with id ${id}`)
+      API.deleteArticle(id)
+          .then(() => {
+            this.loadSaved();
+          })
     }
 
     render() {
@@ -33,19 +37,18 @@ class Saved extends Component {
         <div id="saved-articles" className="row">
           <div className="col-12">
           <h1>Saved Articles</h1>
-            {this.state.savedArticles ? this.state.savedArticles.map(({_id, title, date, url}) => {
+            {this.state.savedArticles.length > 0 ? this.state.savedArticles.map(({_id, title, date, url}) => {
               return(
 
                 <div>
-                <Article 
-                key={_id}
-                title={title} 
-                date={date} 
-                url={url}>
-      
-                  
-                      
-                </Article>
+                  <Article 
+                    key={_id}
+                    title={title} 
+                    date={date} 
+                    url={url}>
+        
+        <DelBtn name="del-btn" data_id={_id} onClick={(e) => {this.deleteArticle(_id)}}/>
+                  </Article>
                 </div>
                 )
                   }) : "no saved articles"}  
