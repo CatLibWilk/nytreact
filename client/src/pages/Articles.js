@@ -16,8 +16,17 @@ class Articles extends Component {
       console.log('load articles');
       API.getArticles()
           .then(result => {
-            console.log(result);
-            console.log("routed back (step 5)")
+            const nytArticles = []
+            result.data.map(article => {
+              const newArticle ={
+                title: article.headline.main,
+                date: article.pub_date,
+                url: article.web_url
+              };
+            nytArticles.push(newArticle);
+            });
+            this.setState({articles: nytArticles});
+            
           })
     }
 
