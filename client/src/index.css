@@ -1,5 +1,35 @@
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-image: radial-gradient(circle at center, rgb(230, 246, 255), rgb(196, 232, 253) 75%, rgb(166, 221, 253) 100%)
+}
+
+.jumbotron {
+  background-image: url('http://backgroundcheckall.com/wp-content/uploads/2017/12/newsprint-background-10.jpg');
+  display: flex;
+  align-items: center;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+  box-shadow: 0px 2px 4px #000000;
+}
+
+.navbar {
+  box-shadow: 0px 2px 4px #616161;
+}
+
+.article-div{
+  border-radius: 20px;
+  box-shadow: 0px 2px 4px #616161;
+}
+
+.article-div:hover {
+  transform: scale(1.05);
+  background-color: rgb(255, 255, 221);
+}
+
+#search-form {
+  border-radius: 20px;
+  box-shadow: 0px 2px 4px #616161;
 }
