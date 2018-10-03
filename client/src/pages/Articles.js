@@ -66,7 +66,7 @@ class Articles extends Component {
 
             <div className="row">
             
-              <div className="col-12 p-3 mt-3 mb-3">
+              <div id="search-form" className="col-12 p-3 border border-secondary mt-3 mb-3">
                 <form>
                   <div className="form-group">
                     <label>Search Term</label>
@@ -91,8 +91,12 @@ class Articles extends Component {
                   key={_id}
                   title={title} 
                   date={date} 
-                  url={url}>
-                    <SaveBtn key={"wow0123"} name="save-btn" data_id={_id} onClick={(e) => {this.saveArticle(title, date, url)}}/>
+                  url={url}
+                  target="_blank"
+                  >
+                    <div className="d-block">
+                      <SaveBtn key={"wow0123"} name="save-btn" data_id={_id} onClick={(e) => {this.saveArticle(title, date, url)}}/>
+                    </div>
                   
                     
                   </Article>

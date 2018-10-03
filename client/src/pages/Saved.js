@@ -37,7 +37,7 @@ class Saved extends Component {
         <div>
 
           <Navbar>
-          <h1 className="col-4">Saved Articles</h1>
+          {/* <h1 className="col-4">Saved Articles</h1> */}
           </Navbar>
           <div id="saved-articles" className="row">
             <div className="col-12">
@@ -51,8 +51,9 @@ class Saved extends Component {
                       title={title} 
                       date={date} 
                       url={url}>
-          
-          <DelBtn name="del-btn" data_id={_id} onClick={(e) => {this.deleteArticle(_id)}}/>
+                <div className="d-block">
+                  <DelBtn name="del-btn" data_id={_id} onClick={(e) => {this.deleteArticle(_id)}}/>
+                </div>
                     </Article>
                   </div>
                   )
